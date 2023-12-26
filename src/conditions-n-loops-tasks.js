@@ -40,6 +40,7 @@ function isPositive(number) {
  */
 function getMaxNumber(a, b, c) {
   let maxNumber = 0;
+  
   if (a > b) {
     maxNumber = a;
   } else {
