@@ -40,7 +40,7 @@ function isPositive(number) {
  */
 function getMaxNumber(a, b, c) {
   let maxNumber = 0;
-  
+
   if (a > b) {
     maxNumber = a;
   } else {
@@ -72,8 +72,13 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  const isEqualX = queen.x === king.x;
+  const isEqualY = queen.y === king.y;
+  const isEqualDiagonal =
+    Math.abs(queen.x - king.x) === Math.abs(queen.y - king.y);
+  const isQueenCaptureKing = isEqualX || isEqualY || isEqualDiagonal;
+  return isQueenCaptureKing;
 }
 
 /**
@@ -94,8 +99,15 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  const areSidesNotZero = a !== 0 || b !== 0 || c !== 0;
+  const isSumOfTwoSidesGreater = a + b > c && b + c > a && a + c > b;
+  const areTwoSidesEqual = a === b || b === c || a === c;
+
+  const isIsosceles =
+    areSidesNotZero && isSumOfTwoSidesGreater && areTwoSidesEqual;
+
+  return isIsosceles;
 }
 
 /**
@@ -147,8 +159,15 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  for (let i = 0; i <= str.length / 2; i += 1) {
+    const isSymbolNotMatch = str[i] !== str[str.length - 1 - i];
+    if (isSymbolNotMatch) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 /**
@@ -165,8 +184,14 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      return i;
+    }
+  }
+
+  return -1;
 }
 
 /**
@@ -184,8 +209,17 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let number = num;
+
+  while (number > 0) {
+    if (number % 10 === digit) {
+      return true;
+    }
+    number = Math.trunc(number / 10);
+  }
+
+  return false;
 }
 
 /**
